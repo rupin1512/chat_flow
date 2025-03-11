@@ -29,6 +29,33 @@ body {
   position: relative;
 }
 
+/* 20250311 업데이트 시작 */
+/* Jalnan Gothic 폰트 import */
+@font-face {
+  font-family: "Jalnan Gothic";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_231029@1.1/JalnanGothic.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* h1, h2 폰트만 변경 (다른 스타일 속성은 변경하지 않음) */
+h1,
+h2 {
+  font-family: "Jalnan Gothic", sans-serif;
+}
+
+/* 버튼 가운데 정렬 및 너비 증가 */
+.primary-btn {
+  display: block;
+  width: 80%; /* 버튼 너비 증가 */
+  max-width: 300px; /* 최대 너비 제한 */
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+/* 20250311 업데이트 끝 */
+
 /* 시작 화면 스타일 */
 #home-screen {
   display: none;
