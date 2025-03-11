@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>하마터면 - 보이스피싱 방지 체험</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- 시작 화면 -->
+    <div id="home-screen" class="active">
+      <div class="logo-container">
+        <h1 class="app-logo">하마터면</h1>
+        <div class="logo-animation"></div>
+      </div>
+      <div class="subtitle">
+        보이스피싱 수법을 직접 체험하며 예방 방법을 배워보세요
+      </div>
+      <button id="start-btn" class="primary-btn pulse">체험 시작하기</button>
+      <div class="tagline">실제 사례로 배우는 안전한 금융생활</div>
+      <div class="disclaimer">
+        이 체험은 실제 사기가 아니며, 안전한 환경에서 진행됩니다.
+      </div>
+    </div>
+
+    <!-- 음성 지원 모달 -->
+    <div id="voice-modal" class="modal">
+      <div class="modal-content">
+        <h2>체험 모드 선택</h2>
+        <p>보이스피싱 체험을 어떤 방식으로 진행하시겠습니까?</p>
+        <div class="option-container">
+          <div class="option" id="voice-option">
+            <div class="option-icon"><i class="fas fa-microphone"></i></div>
+            <div class="option-title">음성 모드</div>
+            <div class="option-desc">생생한 음성 대화로 체험</div>
+          </div>
+          <div class="option" id="text-option">
+            <div class="option-icon"><i class="fas fa-comment"></i></div>
+            <div class="option-title">텍스트 모드</div>
+            <div class="option-desc">텍스트 메시지로 체험</div>
+          </div>
+        </div>
+        <button id="mode-next-btn" class="primary-btn" disabled>
+          선택 완료
+        </button>
+      </div>
+    </div>
+
+    <!-- 성별 선택 모달 -->
+    <div id="gender-modal" class="modal">
+      <div class="modal-content">
+        <div class="progress-container">
+          <div class="progress-bar">
+            <div class="progress" style="width: 33%"></div>
+          </div>
+          <div class="progress-label">맞춤 체험 설정 (1/3)</div>
+        </div>
+        <div class="retro-container">
+          <div class="retro-text" id="gender-text">
+            <p>
+              👤 성별을 선택하세요. (번호 입력) : <span class="cursor">█</span>
+            </p>
+            <p>① 남성 ② 여성</p>
+          </div>
+        </div>
+        <div class="option-buttons">
+          <button class="option-btn" data-value="male">① 남성</button>
+          <button class="option-btn" data-value="female">② 여성</button>
+        </div>
+        <button id="gender-next-btn" class="primary-btn" disabled>다음</button>
+      </div>
+    </div>
+
+    <!-- 나이 선택 모달 -->
+    <div id="age-modal" class="modal">
+      <div class="modal-content">
+        <div class="progress-container">
+          <div class="progress-bar">
+            <div class="progress" style="width: 66%"></div>
+          </div>
+          <div class="progress-label">맞춤 체험 설정 (2/3)</div>
+        </div>
+        <div class="retro-container">
+          <div class="retro-text" id="age-text">
+            <p>✔ <span id="selected-gender">남성</span>으로 설정되었습니다.</p>
+            <p>
+              📆 나이를 선택하세요. (번호 입력) : <span class="cursor">█</span>
+            </p>
+            <p>① 20대 미만 ② 20대 ③ 30-40대 ④ 50대 ⑤ 60대 이상</p>
+          </div>
+        </div>
+        <div class="option-buttons age-buttons">
+          <button class="option-btn" data-value="under20">① 20대 미만</button>
+          <button class="option-btn" data-value="20s">② 20대</button>
+          <button class="option-btn" data-value="30-40s">③ 30-40대</button>
+          <button class="option-btn" data-value="50s">④ 50대</button>
+          <button class="option-btn" data-value="over60">⑤ 60대 이상</button>
+        </div>
+        <button id="age-next-btn" class="primary-btn" disabled>다음</button>
+      </div>
+    </div>
+
+    <!-- 프로필 확인 모달 -->
+    <div id="profile-modal" class="modal">
+      <div class="modal-content">
+        <div class="progress-container">
+          <div class="progress-bar">
+            <div class="progress" style="width: 100%"></div>
+          </div>
+          <div class="progress-label">맞춤 체험 설정 (3/3)</div>
+        </div>
+        <div class="retro-container">
+          <div class="retro-text" id="profile-text">
+            <p>✔ <span id="selected-age">30-40대</span>로 설정되었습니다.</p>
+            <p class="typing-effect">✨ 가상 사용자 정보 ✨</p>
+            <p class="typing-effect">
+              이름: <span id="fake-name">김철수</span>
+            </p>
+            <p class="typing-effect">
+              주민등록번호: <span id="fake-id">123456-1234567</span>
+            </p>
+            <p class="typing-effect">✅ 프로필 설정이 완료되었습니다.</p>
+          </div>
+        </div>
+        <button id="start-chat-btn" class="primary-btn">체험 시작</button>
+      </div>
+    </div>
+
+    <!-- 채팅 화면 -->
+    <div id="chat-screen">
+      <div class="chat-header">
+        <button id="back-btn"><i class="fas fa-arrow-left"></i></button>
+        <div class="chat-title">하마터면 체험중</div>
+        <button id="profile-info-btn">
+          <i class="fas fa-info-circle"></i>
+        </button>
+      </div>
+
+      <div class="profile-info">
+        <div class="profile-popup">
+          <p>👤 가상 사용자 정보</p>
+          <p id="profile-name">이름: 김철수</p>
+          <p id="profile-id">주민등록번호: 123456-1234567</p>
+        </div>
+      </div>
+
+      <div class="chat-messages" id="chat-messages">
+        <!-- 메시지는 JavaScript로 동적 생성됨 -->
+      </div>
+
+      <div class="system-message" id="system-message">
+        <i class="fas fa-exclamation-triangle"></i>
+        <span>이런 상황에서는 개인정보를 절대 공유하지 마세요!</span>
+      </div>
+
+      <div class="chat-input">
+        <input
+          type="text"
+          id="message-input"
+          placeholder="메시지를 입력하세요..."
+        />
+        <button id="send-btn"><i class="fas fa-paper-plane"></i></button>
+        <button id="voice-btn"><i class="fas fa-microphone"></i></button>
+      </div>
+
+      <div class="voice-indicator" id="voice-indicator">
+        <div class="voice-wave">
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <p>듣고 있어요...</p>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
